@@ -1,0 +1,189 @@
+parse_config:
+  raw_binding_map:
+    '&vim_save': :w
+    '&vim_save_quit': :wq
+    SPE_ENTRY: SPE
+    '&mouse_left_click_base': LClick↩BASE
+    MOU_ENTRY:
+      t: SPE
+      h: MOU ↔
+    '&hmrl LGUI A': {t: A, h: Gui}
+    '&hmrl LALT S': {t: S, h: Alt}
+    '&hmrl LCTRL D': {t: D, h: Ctrl}
+    '&hmsl LSHIFT F': {t: F, h: Shift}
+    '&hmsr RSHIFT J': {t: J, h: Shift}
+    '&hmrr RCTRL K': {t: K, h: Ctrl}
+    '&hmrr LALT L': {t: L, h: Alt}
+    '&kp LS(RGUI)': ⇧+Gui
+    '&caps_word': CAPS
+    '&tog NAV_L': NAV ↔
+    HT_1_F1: {t: '1', h: F1}
+    HT_2_F2: {t: '2', h: F2}
+    HT_3_F3: {t: '3', h: F3}
+    HT_4_F4: {t: '4', h: F4}
+    HT_5_F5: {t: '5', h: F5}
+    HT_6_F6: {t: '6', h: F6}
+    HT_7_F7: {t: '7', h: F7}
+    HT_8_F8: {t: '8', h: F8}
+    HT_9_F9: {t: '9', h: F9}
+    ACC_E_AIGU: {t: é, h: É}
+    ACC_E_GRAVE: {t: è, h: È}
+    ACC_E_HAT: {t: ê, h: Ê}
+    ACC_E_TREMA: {t: ë, h: Ë}
+    ACC_A_GRAVE: {t: à, h: À}
+    ACC_A_HAT: {t: â, h: Â}
+    ACC_U_GRAVE: {t: ù, h: Ù}
+    ACC_U_HAT: {t: û, h: Û}
+    ACC_I_HAT: {t: î, h: Î}
+    ACC_O_HAT: {t: ô, h: Ô}
+    ACC_OE: {t: œ, h: Œ}
+    ACC_E_AIGU_TWICE: éé
+    ACC_C_CEDILLA: {t: ç, h: Ç}
+    EURO_SIGN: €
+    ACC_AIGU: dead '
+    ACC_GRAVE: dead `
+    ACC_HAT: dead ^
+    ACC_TREMA: dead "
+    '&sym_paren_pair': ()
+    '&sym_bracket_pair': '[]'
+
+    '&mkp LCLK': LClick
+    '&mkp RCLK': RClick
+    '&mkp MCLK': MClick
+
+    '&kp SIG_UP': ↑
+    '&kp SIG_DOWN': ↓
+    '&kp SIG_LEFT': ←
+    '&kp SIG_RIGHT': →
+
+    '&kp SIG_PRECISION': 🎯 Slow
+    '&kp SIG_SCROLL': 📜 Scroll
+
+    '&kp TP_S1_TL': S1 ↖
+    '&kp TP_S1_TR': S1 ↗
+    '&kp TP_S1_BL': S1 ↙
+    '&kp TP_S1_BR': S1 ↘
+
+    '&kp TP_S2_TL': S2 ↖
+    '&kp TP_S2_TR': S2 ↗
+    '&kp TP_S2_BL': S2 ↙
+    '&kp TP_S2_BR': S2 ↘
+
+    '&kp TP_S3_TL': S3 ↖
+    '&kp TP_S3_TR': S3 ↗
+    '&kp TP_S3_BL': S3 ↙
+    '&kp TP_S3_BR': S3 ↘
+
+  layer_legend_map:
+    mouse_layer: 🖱️ Mouse
+
+  zmk_keycode_map:
+    LCTRL: Ctrl
+    RCTRL: Ctrl
+    LALT: Alt
+    RALT: Alt
+    LGUI: Gui
+    RGUI: Gui
+    LSHFT: Shift
+    RSHFT: Shift
+    ESC: Esc
+    SPACE: ␣
+    BSPC: ⌫
+    RET: ⏎
+    TAB: ↹
+    DEL: ⌦
+    AMPERSAND: '&'
+    AMPS: '&'
+    APOS: "'"
+    APOSTROPHE: "'"
+    ASTERISK: '*'
+    ASTRK: '*'
+    AT: '@'
+    AT_SIGN: '@'
+    BACKSLASH: \
+    BSLH: \
+    CARET: ^
+    COLON: ':'
+    COMMA: ','
+    DLLR: $
+    DOLLAR: $
+    DOT: .
+    DOUBLE_QUOTES: '"'
+    DQT: '"'
+    EQUAL: '='
+    EXCL: '!'
+    EXCLAMATION: '!'
+    FSLH: /
+    GRAVE: '`'
+    GREATER_THAN: '>'
+    GT: '>'
+    HASH: '#'
+    LBKT: '['
+    LBRC: '{'
+    LEFT_BRACE: '{'
+    LEFT_BRACKET: '['
+    LEFT_PARENTHESIS: (
+    LESS_THAN: <
+    LPAR: (
+    LT: <
+    MINUS: '-'
+    NON_US_BACKSLASH: \
+    NON_US_BSLH: '|'
+    NON_US_HASH: '#'
+    NUHS: '#'
+    PERCENT: '%'
+    PERIOD: .
+    PIPE: '|'
+    PIPE2: '|'
+    PLUS: +
+    POUND: '#'
+    PRCNT: '%'
+    QMARK: '?'
+    QUESTION: '?'
+    RBKT: ']'
+    RBRC: '}'
+    RIGHT_BRACE: '}'
+    RIGHT_BRACKET: ']'
+    RIGHT_PARENTHESIS: )
+    RPAR: )
+    SEMI: ;
+    SEMICOLON: ;
+    SINGLE_QUOTE: "'"
+    SLASH: /
+    SQT: "'"
+    STAR: '*'
+    TILDE: '~'
+    TILDE2: '~'
+    UNDER: _
+    UNDERSCORE: _
+
+    RA(COMMA): ç
+    LS(RA(COMMA)): Ç
+    LS(RGUI): ⇧+Gui
+    LC(X): Cut
+    LC(C): Copy
+    LC(V): Paste
+    LC(LS(V)): Plain Paste
+
+    PG_UP: Page ↑
+    PG_DN: Page ↓
+
+    UP: ↑
+    DOWN: ↓
+    LEFT: ←
+    RIGHT: →
+
+  zmk_combos:
+    combo_caps: {draw_separate: true}
+    combo_apps: {draw_separate: true}
+    combo_enter_ctrl: {align: top, offset: 0.01, width: 50}
+    combo_space: {align: bottom, offset: 0.01, width: 50}
+    combo_esc: {align: top, offset: 0.01, width: 50}
+    combo_sym_paren_pair: {align: top, offset: 0.01, width: 50}
+    combo_sym_bracket_pair: {align: top, offset: 0.9, width: 50}
+    combo_vim_save: {draw_separate: true}
+    combo_vim_save_quit: {draw_separate: true}
+
+  draw_config:
+    separate_combo_diagrams: true
+    combo_diagrams_scale: 2

@@ -14,7 +14,6 @@ BOARD_LAYOUTS = {
         "layout_name": "Default Layout",
     }
 }
-
 # Opinionated combo display layout:
 # - key = virtual layer name
 # - value = list of combo labels (the combo "k" value in generated YAML)
