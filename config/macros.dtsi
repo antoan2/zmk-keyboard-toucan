@@ -1,0 +1,303 @@
+vim_save: vim_save {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings = <&kp ESC &kp COLON &kp W &kp ENTER>;
+};
+vim_save_quit: vim_save_quit {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings = <&kp ESC &kp COLON &kp W &kp Q &kp ENTER>;
+};
+special_layer_once: special_layer_once {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings = <&sl SPE_L>;
+};
+#define SPE_ENTRY &special_layer_once
+sym_paren_pair: sym_paren_pair {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings = <&kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS>;
+};
+sym_bracket_pair: sym_bracket_pair {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings = <&kp LEFT_BRACKET &kp RIGHT_BRACKET>;
+};
+sym_brace_pair: sym_brace_pair {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings = <&kp LEFT_BRACE &kp RIGHT_BRACE>;
+};
+// Specials
+special_grave: special_grave {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_press &kp RALT>
+	,<&macro_tap &kp GRAVE>
+	,<&macro_release &kp RALT>
+	;
+};
+special_aigu: special_aigu {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_press &kp RALT>
+	,<&macro_tap &kp SINGLE_QUOTE>
+	,<&macro_release &kp RALT>
+	;
+};
+special_hat: special_hat {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_press &kp RALT>
+	,<&macro_tap &kp NUMBER_6>
+	,<&macro_release &kp RALT>
+	;
+};
+special_trema: special_trema {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_press &kp RALT>
+	,<&macro_tap &kp DOUBLE_QUOTES>
+	,<&macro_release &kp RALT>
+	;
+};
+special_e_aigu: special_e_aigu {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_press &kp RALT>
+	,<&macro_tap &kp E>
+	,<&macro_release &kp RALT>
+	;
+};
+special_e_aigu_twice: special_e_aigu_twice {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_press &kp RALT>
+	,<&macro_tap &kp E>
+	,<&macro_release &kp RALT>
+	,<&macro_press &kp RALT>
+	,<&macro_tap &kp E>
+	,<&macro_release &kp RALT>
+	;
+};
+special_e_aigu_maj: special_e_aigu_maj {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_press &kp RALT>
+	,<&macro_tap &kp LS(E)>
+	,<&macro_release &kp RALT>
+	;
+};
+special_e_grave: special_e_grave {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_press &kp RALT>
+	,<&macro_tap &kp GRAVE>
+	,<&macro_release &kp RALT>
+	,<&macro_tap &kp E>
+	;
+};
+special_e_grave_maj: special_e_grave_maj {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_press &kp RALT>
+	,<&macro_tap &kp GRAVE>
+	,<&macro_release &kp RALT>
+	,<&macro_tap &kp LS(E)>
+	;
+};
+special_e_hat: special_e_hat {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_press &kp RALT>
+	,<&macro_tap &kp NUMBER_6>
+	,<&macro_release &kp RALT>
+	,<&macro_tap &kp E>
+	;
+};
+special_e_hat_maj: special_e_hat_maj {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_press &kp RALT>
+	,<&macro_tap &kp NUMBER_6>
+	,<&macro_release &kp RALT>
+	,<&macro_tap &kp LS(E)>
+	;
+};
+special_e_trema: special_e_trema {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_press &kp RALT>
+	,<&macro_tap &kp DOUBLE_QUOTES>
+	,<&macro_release &kp RALT>
+	,<&macro_tap &kp E>
+	;
+};
+special_e_trema_maj: special_e_trema_maj {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_press &kp RALT>
+	,<&macro_tap &kp DOUBLE_QUOTES>
+	,<&macro_release &kp RALT>
+	,<&macro_tap &kp LS(E)>
+	;
+};
+special_a_grave: special_a_grave {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_press &kp RALT>
+	,<&macro_tap &kp GRAVE>
+	,<&macro_release &kp RALT>
+	,<&macro_tap &kp A>
+	;
+};
+special_a_grave_maj: special_a_grave_maj {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_press &kp RALT>
+	,<&macro_tap &kp GRAVE>
+	,<&macro_release &kp RALT>
+	,<&macro_tap &kp LS(A)>
+	;
+};
+special_a_hat: special_a_hat {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_press &kp RALT>
+	,<&macro_tap &kp NUMBER_6>
+	,<&macro_release &kp RALT>
+	,<&macro_tap &kp A>
+	;
+};
+special_a_hat_maj: special_a_hat_maj {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_press &kp RALT>
+	,<&macro_tap &kp NUMBER_6>
+	,<&macro_release &kp RALT>
+	,<&macro_tap &kp LS(A)>
+	;
+};
+special_u_grave: special_u_grave {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_press &kp RALT>
+	,<&macro_tap &kp GRAVE>
+	,<&macro_release &kp RALT>
+	,<&macro_tap &kp U>
+	;
+};
+special_u_grave_maj: special_u_grave_maj {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_press &kp RALT>
+	,<&macro_tap &kp GRAVE>
+	,<&macro_release &kp RALT>
+	,<&macro_tap &kp LS(U)>
+	;
+};
+special_u_hat: special_u_hat {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_press &kp RALT>
+	,<&macro_tap &kp NUMBER_6>
+	,<&macro_release &kp RALT>
+	,<&macro_tap &kp U>
+	;
+};
+special_u_hat_maj: special_u_hat_maj {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_press &kp RALT>
+	,<&macro_tap &kp NUMBER_6>
+	,<&macro_release &kp RALT>
+	,<&macro_tap &kp LS(U)>
+	;
+};
+special_i_hat: special_i_hat {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_press &kp RALT>
+	,<&macro_tap &kp NUMBER_6>
+	,<&macro_release &kp RALT>
+	,<&macro_tap &kp I>
+	;
+};
+special_i_hat_maj: special_i_hat_maj {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_press &kp RALT>
+	,<&macro_tap &kp NUMBER_6>
+	,<&macro_release &kp RALT>
+	,<&macro_tap &kp LS(I)>
+	;
+};
+special_o_hat: special_o_hat {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_press &kp RALT>
+	,<&macro_tap &kp NUMBER_6>
+	,<&macro_release &kp RALT>
+	,<&macro_tap &kp O>
+	;
+};
+special_o_hat_maj: special_o_hat_maj {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_press &kp RALT>
+	,<&macro_tap &kp NUMBER_6>
+	,<&macro_release &kp RALT>
+	,<&macro_tap &kp LS(O)>
+	;
+};
+special_c_cedilla: special_c_cedilla {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings = <&kp RA(COMMA)>;
+};
+special_c_cedilla_maj: special_c_cedilla_maj {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings = <&kp LS(RA(COMMA))>;
+};
+special_euro: special_euro {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings = <&kp RA(NUMBER_5)>;
+};
+special_oe: special_oe {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings = <&kp RA(K)>;
+};
+special_oe_maj: special_oe_maj {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings = <&kp LS(RA(K))>;
+};
