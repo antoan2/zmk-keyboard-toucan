@@ -10,6 +10,7 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/pointing.h>
 
 #define BASE_L 0
 #define NAV_L 1
@@ -17,6 +18,7 @@
 #define NUM_L 3
 #define SPE_L 4
 #define SCR_L 5
+#define TOUCH_L 6
 
 // Keyboard keys positions
 // 0  1  2  3  4  5               6  7  8  9  10 11
@@ -36,7 +38,7 @@
 #define THUMB_KEYS                                          \
             36 37 38                39 40 41
 
-&glidepoint_listener {
+&trackpad_listener {
     input-processors = <&zip_xy_scaler 150 100>;
     precision {
         layers = <2>;
@@ -173,6 +175,22 @@
 &trans            &trans            &trans      &trans            &trans            &trans     &trans  &trans       &trans      &trans      &trans      &trans
 &trans            &trans            &trans      &trans            &trans            &trans     &trans  &trans       &trans      &trans      &trans      &trans
                                         &trans  &trans  &trans         &trans  &trans  &trans
+            >;
+        };
+
+        // Raised by is_touching_processor while a finger rests on the trackpad.
+        // Kept separate from SPE_L so touching the pad cannot trigger accents.
+        //
+        // NOTE: boards/shields/toucan/toucan.dtsi hardcodes this layer's index
+        // as `&mo 6`. If you reorder or insert layers above this one, update
+        // that binding to match. See "Local deviations from upstream" in README.md.
+        touch_layer {
+            display-name = "touch";
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans                 &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                 &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                 &trans  &trans  &trans  &trans  &trans  &trans
+                        &mkp MCLK  &mkp LCLK  &mkp RCLK        &mkp LCLK  &mkp RCLK  &mkp MCLK
             >;
         };
     };
