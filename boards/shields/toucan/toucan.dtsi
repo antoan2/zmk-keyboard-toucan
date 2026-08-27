@@ -6,7 +6,6 @@
 #include <physical_layouts.dtsi>
 
 //#define TOUCAN_WIN_MODE
-#define TOUCAN_LINUX_MODE
 
 / {
     chosen {
@@ -103,7 +102,7 @@
             #input-processor-cells = <0>;
             event-code = <INPUT_REL_MISC>;
             sensitivity = <10>;
-#if defined(TOUCAN_WIN_MODE) || defined(TOUCAN_LINUX_MODE)
+#ifdef TOUCAN_WIN_MODE
             bindings = <&kp LC(MINUS)>, <&kp LC(EQUAL)>;
 #else
             bindings = <&kp LG(MINUS)>, <&kp LG(EQUAL)>;
@@ -116,20 +115,14 @@
             #input-processor-cells = <0>;
 
             codes = <INPUT_BTN_TOUCH>;      // watch for the 'touch' pseudo button
-            // Layer 6 == TOUCH_L in config/toucan.keymap. Upstream default is 4,
-            // but layer 4 here is SPE_L (accents) -- see config/toucan.keymap.
-            bindings  = <&mo 6>;            // Activate TOUCH_L while a finger rests on the pad
+            bindings  = <&mo 4>;            // Activate Layer 4 while held &mo 4
         };
 
         swipe_button_mapper: swipe_button_mapper {
             compatible = "zmk,input-processor-behaviors";
             #input-processor-cells = <0>;
             codes = <INPUT_BTN_NORTH INPUT_BTN_EAST INPUT_BTN_SOUTH INPUT_BTN_WEST>;
-#if defined(TOUCAN_LINUX_MODE)
-            // GNOME/KDE defaults. North = overview, South = show desktop,
-            // East/West = switch workspace. Tune to your desktop environment.
-            bindings = <&kp LG(NUMBER_0)>, <&kp LC(LA(RIGHT))>, <&kp LC(LA(D))>, <&kp LC(LA(LEFT))>;
-#elif defined(TOUCAN_WIN_MODE)
+#ifdef TOUCAN_WIN_MODE
             bindings = <&kp LG(TAB)>, <&kp LG(RIGHT)>, <&kp LG(D)>, <&kp LG(LEFT)>;
 #else
             bindings = <&kp LC(LG(UP))>, <&kp LC(LG(RIGHT))>, <&kp LC(LG(DOWN))>, <&kp LC(LG(LEFT))>;
