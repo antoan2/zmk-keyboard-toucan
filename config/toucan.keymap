@@ -61,10 +61,13 @@
 
     // Upstream turns XY into scroll on layers 1 and 2 (our NAV_L / SYM_L). The
     // TPS43 scrolls natively with two fingers, so this is both redundant and
-    // wrong for us -- disable it by pointing it at no layers.
-    scroller {
-        layers = <>;
-    };
+    // wrong for us -- delete the override node outright.
+    //
+    // Note: an empty `layers = <>;` does NOT work here. ZMK's IL_OVERRIDE macro
+    // expands `.layer_mask = DT_FOREACH_PROP_ELEM_SEP(node, layers, ...)` with
+    // no guard for an empty property, so it collapses to `.layer_mask = ,` and
+    // fails to compile. The node has to go away entirely.
+    /delete-node/ scroller;
 
     // Slow-cursor modes. Scalers are ABSOLUTE, not relative to the base above:
     // against a base of 150 these give roughly 2x and 5x slowdowns.
