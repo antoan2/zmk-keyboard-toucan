@@ -413,6 +413,85 @@ layers:
       type: trans
     - t: ▽
       type: trans
+  touch:
+  - - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+  - - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+  - - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+  - - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - MClick
+    - LClick
+    - RClick
+    - LClick
+  - - RClick
+    - MClick
   Combos/Symbols:
   - - ''
     - ''

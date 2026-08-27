@@ -10,13 +10,20 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/pointing.h>
 
 #define BASE_L 0
 #define NAV_L 1
 #define SYM_L 2
 #define NUM_L 3
 #define SPE_L 4
-#define SCR_L 5
+#define TOUCH_L 5
+// PREC_L and ULTRA_L are "phantom" layers: they carry no bindings and exist only
+// so the trackpad_listener child nodes below can match on them. ZMK has no
+// behaviour that rescales the pointer directly, so a slow-cursor mode has to be
+// expressed as a layer that a listener child node watches for.
+#define PREC_L 6
+#define ULTRA_L 7
 
 // Keyboard keys positions
 // 0  1  2  3  4  5               6  7  8  9  10 11
@@ -36,24 +43,60 @@
 #define THUMB_KEYS                                          \
             36 37 38                39 40 41
 
-&glidepoint_listener {
-    input-processors = <&zip_xy_scaler 150 100>;
+// All local trackpad customisation lives here, never in boards/shields/toucan/,
+// which is upstream's file and must stay byte-identical so merges fast-forward.
+//
+// WARNING: assigning input-processors REPLACES the property, it does not append.
+// The whole chain has to be re-listed or the gesture processors are silently
+// dropped (no touch layer, no zoom, no swipes). If upstream adds a processor to
+// boards/shields/toucan/toucan.dtsi, it must be added here too.
+&trackpad_listener {
+    input-processors = <
+        &zip_xy_scaler 150 100      // local: upstream ships 100
+        &zip_scroll_scaler 1 20
+        &zip_zoom_mapper
+        &is_touching_processor
+        &swipe_button_mapper
+    >;
+
+    // Upstream turns XY into scroll on layers 1 and 2 (our NAV_L / SYM_L). The
+    // TPS43 scrolls natively with two fingers, so this is both redundant and
+    // wrong for us -- delete the override node outright.
+    //
+    // Note: an empty `layers = <>;` does NOT work here. ZMK's IL_OVERRIDE macro
+    // expands `.layer_mask = DT_FOREACH_PROP_ELEM_SEP(node, layers, ...)` with
+    // no guard for an empty property, so it collapses to `.layer_mask = ,` and
+    // fails to compile. The node has to go away entirely.
+    /delete-node/ scroller;
+
+    // Slow-cursor modes. Scalers are ABSOLUTE, not relative to the base above:
+    // against a base of 150 these give roughly 2x and 5x slowdowns.
     precision {
-        layers = <2>;
-        input-processors = <&zip_xy_scaler 110 100>;
+        layers = <PREC_L>;
+        input-processors = <&zip_xy_scaler 75 100>;
     };
     ultra_precision {
-        layers = <3>;
-        input-processors = <&zip_xy_scaler 50 100>;
+        layers = <ULTRA_L>;
+        input-processors = <&zip_xy_scaler 30 100>;
     };
-    scroller {
-        layers = <5>;
-        input-processors = <
-            &zip_xy_to_scroll_mapper
-            &zip_scroll_scaler 1 5
-            &zip_scroll_transform INPUT_TRANSFORM_X_INVERT
-        >;
-    };
+};
+
+// Upstream targets layer 4, which is SPE_L (French accents) here -- touching the
+// pad would silently switch to the accent layer.
+&is_touching_processor {
+    bindings = <&mo TOUCH_L>;
+};
+
+// Linux chords; upstream defaults are macOS.
+&zip_zoom_mapper {
+    bindings = <&kp LC(MINUS)>, <&kp LC(EQUAL)>;
+};
+
+// 3-finger swipes, N/E/S/W. North taps bare LGUI to open the GNOME overview,
+// same as the existing "z/" combo. South is unassigned: GNOME has no App Expose
+// equivalent that behaves sensibly under a brief press.
+&swipe_button_mapper {
+    bindings = <&kp LGUI>, <&kp LC(LA(RIGHT))>, <&none>, <&kp LC(LA(LEFT))>;
 };
 
 / {
@@ -123,7 +166,7 @@
 &trans        &kp Q         &kp W         &kp E          &kp R           &kp T                       &kp Y  &kp U           &kp I          &kp O         &kp P         &trans
 &trans        &hmrl LGUI A  &hmrl LALT S  &hmrl LCTRL D  &hmsl LSHIFT F  &kp G                       &kp H  &hmsr RSHIFT J  &hmrr RCTRL K  &hmrr LALT L  SPE_ENTRY    &trans
 &trans        &kp Z         &kp X         &kp C          &kp V           &kp B                       &kp N  &kp M           &kp COMMA      &kp DOT       &kp SLASH     &trans
-                                        &thumb SCR_L DELETE  &thumb NUM_L TAB     &thumb SYM_L BACKSPACE    &space NAV_L SPACE  &kp ENTER  &kp ESC
+                                        &kp DELETE  &thumb NUM_L TAB     &thumb SYM_L BACKSPACE    &space NAV_L SPACE  &kp ENTER  &kp ESC
             >;
         };
 
@@ -166,13 +209,46 @@
                                         &trans  &trans  &trans         &trans  &trans  &trans
             >;
         };
-        scroll_layer {
-            display-name = "scroll";
+        // Raised by is_touching_processor while a finger rests on the trackpad.
+        // Clicks sit on W/E/R so the home-row mods stay reachable for Ctrl-click
+        // and Shift-click, and Z/X/C/V keep working for Ctrl+C/V/X.
+        //
+        // The left thumbs hold the two slow-cursor layers.
+        touch_layer {
+            display-name = "touch";
             bindings = <
-&trans            &trans            &trans      &trans            &trans            &trans     &trans  &trans       &trans      &trans      &trans      &trans
-&trans            &trans            &trans      &trans            &trans            &trans     &trans  &trans       &trans      &trans      &trans      &trans
-&trans            &trans            &trans      &trans            &trans            &trans     &trans  &trans       &trans      &trans      &trans      &trans
-                                        &trans  &trans  &trans         &trans  &trans  &trans
+&trans  &trans  &mkp LCLK  &mkp MCLK  &mkp RCLK  &trans          &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans     &trans     &trans     &trans          &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans     &trans     &trans     &trans          &trans  &trans  &trans  &trans  &trans  &trans
+                        &mo ULTRA_L  &mo PREC_L  &trans          &trans  &trans  &trans
+            >;
+        };
+
+        // Phantom layers -- no bindings of their own. They exist only so the
+        // trackpad_listener child nodes can match on them to slow the cursor.
+        //
+        // Being all-&trans is what keeps the clicks above working while a speed
+        // layer is held: ZMK walks active layers highest-first and &trans falls
+        // through to the next ACTIVE layer, not straight to base. TOUCH_L stays
+        // active throughout (the finger is still on the pad), so W/E/R resolve
+        // there. These layers are only reachable from TOUCH_L in the first place.
+        precision_layer {
+            display-name = "prec";
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans                 &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                 &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                 &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans                 &trans  &trans  &trans
+            >;
+        };
+
+        ultra_precision_layer {
+            display-name = "ultra";
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans                 &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                 &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                 &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans                 &trans  &trans  &trans
             >;
         };
     };
