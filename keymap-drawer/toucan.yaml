@@ -103,9 +103,10 @@ layers:
       type: trans
     - t: ▽
       type: trans
-    - PAGE UP
-    - PAGE DOWN
     - t: ▽
+      type: trans
+    - PAGE UP
+    - t: PAGE DOWN
       type: trans
     - t: ▽
       type: trans
@@ -286,7 +287,8 @@ layers:
     - Shift
     - t: ▽
       type: trans
-    - t: ▽
+    - t: ü
+      h: Ü
       type: trans
     - t: û
       h: Û
@@ -329,7 +331,174 @@ layers:
       type: trans
     - t: ▽
       type: trans
-  scroll:
+  touch:
+  - - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: LClick
+      type: trans
+    - t: MClick
+      type: trans
+    - t: RClick
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+  - - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+  - - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+  - - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - ultra
+    - prec
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+  - - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+  prec:
+  - - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+  - - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+  - - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+  - - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+    - type: held
+    - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+  - - t: ▽
+      type: trans
+    - t: ▽
+      type: trans
+  ultra:
   - - t: ▽
       type: trans
     - t: ▽
@@ -413,85 +582,6 @@ layers:
       type: trans
     - t: ▽
       type: trans
-  touch:
-  - - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-  - - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-  - - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-  - - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - t: ▽
-      type: trans
-    - MClick
-    - LClick
-    - RClick
-    - LClick
-  - - RClick
-    - MClick
   Combos/Symbols:
   - - ''
     - ''
@@ -650,14 +740,14 @@ combos:
   l:
   - Combos/Symbols
 - p:
-  - 26
-  - 14
+  - 33
+  - 21
   k: +
   l:
   - Combos/Symbols
 - p:
-  - 33
-  - 21
+  - 26
+  - 14
   k: '-'
   l:
   - Combos/Symbols
