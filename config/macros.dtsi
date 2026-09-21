@@ -187,6 +187,22 @@ special_u_hat_maj: special_u_hat_maj {
 	,<&macro_tap &kp LS(U)>
 	;
 };
+special_u_trema: special_u_trema {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_tap &kp RA(DOUBLE_QUOTES)>
+	,<&macro_tap &kp U>
+	;
+};
+special_u_trema_maj: special_u_trema_maj {
+	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
+	bindings
+	= <&macro_tap &kp RA(DOUBLE_QUOTES)>
+	,<&macro_tap &kp LS(U)>
+	;
+};
 special_i_hat: special_i_hat {
 	compatible = "zmk,behavior-macro";
 	#binding-cells = <0>;

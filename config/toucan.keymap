@@ -115,8 +115,8 @@
         #define COMBO_KEYS_SYM_CARET 1 13 // "qa"
         #define COMBO_KEYS_SYM_DOLLAR 5 17 // "tg"
         #define COMBO_KEYS_SYM_ASTERISK 6 18 // "yh"
-        #define COMBO_KEYS_SYM_PLUS 26 14 // "xs"
-        #define COMBO_KEYS_SYM_MINUS 33 21 // ".l"
+        #define COMBO_KEYS_SYM_PLUS 33 21 // ".l"
+        #define COMBO_KEYS_SYM_MINUS 26 14 // "xs"
         #define COMBO_KEYS_SYM_HASH 17 29 // "gb"
         #define COMBO_KEYS_SYM_GRAVE 13 25 // "az"
 
@@ -175,7 +175,7 @@
             bindings = <
 &trans  &trans          &kp HOME        &kp UP          &kp END           &trans                 &trans  &kp K_PLAY_PAUSE   &kp K_MUTE      &trans        &trans        &trans
 &trans  &trans          &kp LEFT        &kp DOWN        &kp RIGHT         &trans                 &trans  &kp RSHIFT         &kp RCTRL       &kp LALT      &kp RGUI      &trans
-&trans  &trans          &kp PAGE_UP     &kp PAGE_DOWN   &trans            &trans                 &trans  &kp K_VOL_DN       &kp K_VOL_UP    &trans        &kp LS(RGUI)  &trans
+&trans  &trans          &trans          &kp PAGE_UP     &kp PAGE_DOWN     &trans                 &trans  &kp K_VOL_DN       &kp K_VOL_UP    &trans        &kp LS(RGUI)  &trans
                                         &trans  &trans  &trans            &trans  &trans  &trans
             >;
         };
@@ -204,7 +204,7 @@
             display-name = "special";
             bindings = <
 &trans            ACC_E_AIGU_TWICE  ACC_E_AIGU  ACC_E_GRAVE      &trans            &trans     &trans  ACC_U_GRAVE  &trans      &trans      &trans      &trans
-&trans            ACC_A_GRAVE       ACC_E_TREMA ACC_E_HAT        &kp LSHFT         &trans     &trans  ACC_U_HAT    ACC_I_HAT  ACC_O_HAT  &trans      &trans
+&trans            ACC_A_GRAVE       ACC_E_TREMA ACC_E_HAT        &kp LSHFT         &trans     ACC_U_TREMA  ACC_U_HAT    ACC_I_HAT  ACC_O_HAT  &trans      &trans
 &trans            ACC_A_HAT         EURO_SIGN   ACC_C_CEDILLA    ACC_AIGU          ACC_GRAVE  &trans  ACC_HAT      ACC_TREMA  ACC_OE     &trans      &trans
                                         &trans  &trans  &trans         &trans  &trans  &trans
             >;

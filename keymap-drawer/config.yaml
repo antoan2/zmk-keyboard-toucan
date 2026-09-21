@@ -34,6 +34,7 @@ parse_config:
     ACC_A_HAT: {t: â, h: Â}
     ACC_U_GRAVE: {t: ù, h: Ù}
     ACC_U_HAT: {t: û, h: Û}
+    ACC_U_TREMA: {t: ü, h: Ü}
     ACC_I_HAT: {t: î, h: Î}
     ACC_O_HAT: {t: ô, h: Ô}
     ACC_OE: {t: œ, h: Œ}
