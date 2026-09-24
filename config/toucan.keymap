@@ -149,6 +149,10 @@
         #define COMBO_KEYS_PASTE 27 28 // "cv"
         #define COMBO_KEYS_SPACE 26 27 28 // "xcv"
         #define COMBO_KEYS_PLAIN_PASTE 28 29 // "vb"
+
+        #define COMBO_KEYS_SYM_LT 30 31 // "nm" -> "<"
+        #define COMBO_KEYS_SYM_GT 31 32 // "m," -> ">"
+        #define COMBO_KEYS_SYM_ARROW 32 33 // ",." -> "->"
         #include "combos.dtsi"
     };
 
