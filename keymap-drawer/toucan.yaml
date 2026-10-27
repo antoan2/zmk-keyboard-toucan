@@ -61,7 +61,8 @@ layers:
     - t: ␣
       h: nav
   - - ENTER
-    - Esc
+    - t: ␣
+      h: toggle
   nav:
   - - t: ▽
       type: trans
@@ -829,6 +830,22 @@ combos:
   k: ;
   l:
   - Combos/Symbols
+- p:
+  - 30
+  - 31
+  k: <
+  l:
+  - Combos/Symbols
+- p:
+  - 31
+  - 32
+  k: '>'
+  l:
+  - Combos/Symbols
+- p:
+  - 32
+  - 33
+  k: '&sym_arrow'
 - p:
   - 25
   - 26
