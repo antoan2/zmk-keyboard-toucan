@@ -170,7 +170,7 @@
 &trans        &kp Q         &kp W         &kp E          &kp R           &kp T                       &kp Y  &kp U           &kp I          &kp O         &kp P         &trans
 &trans        &hmrl LGUI A  &hmrl LALT S  &hmrl LCTRL D  &hmsl LSHIFT F  &kp G                       &kp H  &hmsr RSHIFT J  &hmrr RCTRL K  &hmrr LALT L  SPE_ENTRY    &trans
 &trans        &kp Z         &kp X         &kp C          &kp V           &kp B                       &kp N  &kp M           &kp COMMA      &kp DOT       &kp SLASH     &trans
-                                        &kp DELETE  &thumb NUM_L TAB     &thumb SYM_L BACKSPACE    &space NAV_L SPACE  &kp ENTER  &kp ESC
+                                        &kp DELETE  &thumb NUM_L TAB     &thumb SYM_L BACKSPACE    &space NAV_L SPACE  &kp ENTER  &kt SPACE
             >;
         };
 
