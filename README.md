@@ -5,42 +5,41 @@
 # Customizations
 
 - **Keymap**: [config/toucan.keymap](config/toucan.keymap)
-- **General configs**: [boards/shields/toucan/toucan_left.conf](boards/shields/toucan/toucan_left.conf) and [boards/shields/toucan/toucan_right.conf](boards/shields/toucan/toucan_right.conf)
-- **Swipe shortcuts**: the `swipe_button_mapper` node in [boards/shields/toucan/toucan.dtsi](boards/shields/toucan/toucan.dtsi)
-- **Invert scroll / trackpad settings**: the `tps43_trackpad` node in [boards/shields/toucan/toucan_right.overlay](boards/shields/toucan/toucan_right.overlay)
+- **General configs**: [config/toucan_left.conf](config/toucan_left.conf) and [config/toucan_right.conf](config/toucan_right.conf)
+- **Swipe, zoom and touch-layer bindings**: the `&swipe_button_mapper`, `&zip_zoom_mapper` and `&is_touching_processor` overrides in [config/toucan.keymap](config/toucan.keymap)
+- **Trackpad settings**: the `&tps43_trackpad` override in [config/toucan_right.overlay](config/toucan_right.overlay), on top of upstream's node in [boards/shields/toucan/toucan_right.overlay](boards/shields/toucan/toucan_right.overlay)
 
 # Local deviations from upstream
 
 This fork differs from [beekeeb/zmk-keyboard-toucan2](https://github.com/beekeeb/zmk-keyboard-toucan2) in the
-following ways. Re-check these whenever merging upstream, since upstream owns the files they live in.
+following ways. `boards/shields/toucan/` stays byte-identical to upstream so merges never conflict: every local
+change is a devicetree override in `config/`.
 
-### Touch layer is 6, not 4
+### Touch layer is `TOUCH_L`, not 4
 
-`is_touching_processor` in [boards/shields/toucan/toucan.dtsi](boards/shields/toucan/toucan.dtsi) raises a layer
-while a finger rests on the trackpad. Upstream binds this to `&mo 4`; here it is **`&mo 6`**.
+`is_touching_processor` raises a layer while a finger rests on the trackpad. Upstream binds it to `&mo 4`, which
+is `SPE_L` (French accents) here, so every trackpad touch would switch to the accent layer.
+[config/toucan.keymap](config/toucan.keymap) overrides it to `&mo TOUCH_L`. The symbolic name follows any layer
+reordering.
 
-Layer 4 in [config/toucan.keymap](config/toucan.keymap) is `SPE_L` (French accents), so upstream's default would
-silently switch the keyboard into the accent layer on every trackpad touch. Layer 6 is `TOUCH_L`, a dedicated
-mouse-click layer added for this purpose.
+### Linux shortcuts
 
-**This is a cross-file coupling with nothing to enforce it.** The layer index is a bare number in a shield
-`.dtsi`; the layer it refers to is defined in the keymap. If you reorder or insert layers in
-[config/toucan.keymap](config/toucan.keymap), you must update `&mo 6` in the `.dtsi` to match, or the trackpad
-will start raising the wrong layer. Both sites carry a comment pointing at the other.
+Upstream ships macOS bindings with a `TOUCAN_WIN_MODE` toggle for Windows. This fork overrides
+`&zip_zoom_mapper` and `&swipe_button_mapper` in [config/toucan.keymap](config/toucan.keymap) with GNOME
+chords.
 
-### Linux shortcut mode
+### Trackpad wake-up
 
-Upstream ships macOS bindings with a `TOUCAN_WIN_MODE` toggle for Windows. This fork adds a third arm,
-`TOUCAN_LINUX_MODE` (enabled near the top of the `.dtsi`), for the zoom and swipe chords. The macOS and Windows
-arms are left intact so upstream merges stay clean. The swipe bindings assume GNOME/KDE defaults and are worth
-tuning to your actual desktop environment.
+Upstream sets `report-rate-lp2 = <640>`: after ~30 s without a touch, the pad samples every 640 ms, so the
+cursor takes up to ~1 s to move on the next touch.
+[config/toucan_right.overlay](config/toucan_right.overlay) restores the chip default (160 ms).
 
 ### Keymap and tooling
 
-The keymap is fully rewritten (6 base layers + `TOUCH_L`, home-row mods, combos, French-accent macros) and split
-across `config/*.dtsi` includes. The `keymap-drawer/` diagrams and [scripts/draw.py](scripts/draw.py) are local
-additions with no upstream counterpart. Upstream's own `config/toucan.keymap` is always resolved in favour of
-this one during merges.
+The keymap is fully rewritten (5 typing layers, `TOUCH_L`, two pointer-speed layers, home-row mods, combos,
+French-accent macros) and split across `config/*.dtsi` includes. The `keymap-drawer/` diagrams and
+[scripts/draw.py](scripts/draw.py) are local additions with no upstream counterpart. Upstream's own
+`config/toucan.keymap` is always resolved in favour of this one during merges.
 
 # License
 
