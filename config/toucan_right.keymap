@@ -1,0 +1,15 @@
+// Right-half keymap: the shared keymap plus overrides for nodes that exist
+// only on this half. ZMK picks config/toucan_right.keymap before
+// config/toucan.keymap for the toucan_right shield, and applies the keymap
+// after the shield overlays, so &tps43_trackpad is defined by then. (A
+// config/toucan_right.overlay is applied BEFORE the shield overlay and fails
+// with "undefined node label".)
+#include "toucan.keymap"
+
+// Upstream sets report-rate-lp2 = <640>. The TPS43 reaches LP2 after ~30 s
+// without a touch (idle 10 s + LP1 20 s), then samples only every 640 ms:
+// the cursor took up to ~1 s to move on the next touch. 160 ms is the chip
+// default (~174 uA in LP2 instead of ~55 uA, per upstream's comment).
+&tps43_trackpad {
+    report-rate-lp2 = <160>;
+};

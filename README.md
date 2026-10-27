@@ -7,7 +7,7 @@
 - **Keymap**: [config/toucan.keymap](config/toucan.keymap)
 - **General configs**: [config/toucan_left.conf](config/toucan_left.conf) and [config/toucan_right.conf](config/toucan_right.conf)
 - **Swipe, zoom and touch-layer bindings**: the `&swipe_button_mapper`, `&zip_zoom_mapper` and `&is_touching_processor` overrides in [config/toucan.keymap](config/toucan.keymap)
-- **Trackpad settings**: the `&tps43_trackpad` override in [config/toucan_right.overlay](config/toucan_right.overlay), on top of upstream's node in [boards/shields/toucan/toucan_right.overlay](boards/shields/toucan/toucan_right.overlay)
+- **Trackpad settings**: the `&tps43_trackpad` override in [config/toucan_right.keymap](config/toucan_right.keymap), on top of upstream's node in [boards/shields/toucan/toucan_right.overlay](boards/shields/toucan/toucan_right.overlay)
 
 # Local deviations from upstream
 
@@ -32,7 +32,7 @@ chords.
 
 Upstream sets `report-rate-lp2 = <640>`: after ~30 s without a touch, the pad samples every 640 ms, so the
 cursor takes up to ~1 s to move on the next touch.
-[config/toucan_right.overlay](config/toucan_right.overlay) restores the chip default (160 ms).
+[config/toucan_right.keymap](config/toucan_right.keymap) restores the chip default (160 ms).
 
 ### Keymap and tooling
 

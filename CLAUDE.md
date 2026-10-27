@@ -55,15 +55,19 @@ Branch for the Toucan2 port: `toucan2-migration` (PR #2). Upstream remote: `touc
   sends a held space. Push-to-talk tools that need a held space use `&kt SPACE` on 41
   (press once to hold, press again to release). ESC lives on the `wer` combo.
 - Never edit `boards/shields/toucan/`: it is upstream's file. Override nodes from
-  `config/toucan.keymap` (both halves) or `config/toucan_right.overlay` (right half only,
-  e.g. `&tps43_trackpad`, which does not exist on the left half). ZMK applies the first
-  existing `config/<shield>.overlay` after the shield's own overlay.
+  `config/toucan.keymap` (both halves) or `config/toucan_right.keymap` (right half only,
+  e.g. `&tps43_trackpad`, which does not exist on the left half; it `#include`s
+  `toucan.keymap`).
+- Devicetree order on a build: `config/<shield>.overlay` → shield overlays in `boards/` →
+  keymap. A `config/*.overlay` cannot reference labels from the shield ("undefined node
+  label"); only the keymap can. ZMK picks `config/toucan_right.keymap` over
+  `config/toucan.keymap` for the right half.
 
 ## Trackpad power (TPS43, driver `beekeeb/zmk_driver_azoteq`)
 
 - Chip modes: active → idle-touch → idle (10 s) → LP1 (20 s, 80 ms) → LP2. The LP2 report rate
   is the wake-up latency after ~30 s without a touch. Upstream sets 640 ms; the local overlay
-  sets 160 ms.
+  sets 160 ms (`config/toucan_right.keymap`).
 - ZMK counts key presses and input events (trackpad included) as activity. Each half enters
   deep sleep after `CONFIG_ZMK_IDLE_SLEEP_TIMEOUT` (1 h) of no activity, never while on USB power.
   The driver suspends the pad on `ZMK_ACTIVITY_SLEEP`, and on `IDLE` only with `idle-sleep`.
