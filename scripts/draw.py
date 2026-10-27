@@ -10,9 +10,15 @@ TARGET_BOARDS = ("toucan",)
 
 BOARD_LAYOUTS = {
     "toucan": {
-        "qmk_info_json": "config/toucan.json",
+        "qmk_info_json": "keymap-drawer/toucan_5col.json",
         "layout_name": "Default Layout",
     }
+}
+# The board has 6 columns per half, but this unit has no switches on the outer
+# columns. Their key positions are dropped from the drawing, and the remaining
+# positions are renumbered to match the 36-key layout above.
+DROPPED_KEY_POSITIONS = {
+    "toucan": {0, 11, 12, 23, 24, 35},
 }
 # Opinionated combo display layout:
 # - key = virtual layer name
@@ -48,6 +54,7 @@ COMBOS_BY_DISPLAY_LAYER = {
         "`",
         "<",
         ">",
+        "->",
         "|",
         "\\",
         "/",
@@ -140,11 +147,21 @@ def find_keymap_cli() -> list[str]:
     )
 
 
+def drop_key_positions(data: dict, dropped: set[int]) -> None:
+    for name, rows in (data.get("layers") or {}).items():
+        flat = [key for row in rows for key in row] if rows and isinstance(rows[0], list) else rows
+        data["layers"][name] = [key for i, key in enumerate(flat) if i not in dropped]
+
+    for combo in data.get("combos", []) or []:
+        combo["p"] = [p - sum(d < p for d in dropped) for p in combo["p"] if p not in dropped]
+
+
 def transform_yaml(
     yaml_path: Path,
     yaml_module,
     combo_lookup: dict[str, str],
     layout: dict[str, str] | None = None,
+    dropped: set[int] | None = None,
 ) -> None:
     data = yaml_module.safe_load(yaml_path.read_text(encoding="utf-8")) or {}
     combos = data.get("combos", []) or []
@@ -153,6 +170,9 @@ def transform_yaml(
 
     if layout:
         data["layout"] = layout
+
+    if dropped:
+        drop_key_positions(data, dropped)
 
     unmatched: list[str] = []
     matched_count = 0
@@ -212,8 +232,6 @@ def draw_one(
         str(config_file),
         "parse",
     ]
-    if yaml_file.exists():
-        parse_cmd += ["-b", str(yaml_file)]
 
     parsed = run(
         parse_cmd
@@ -230,7 +248,9 @@ def draw_one(
     )
     yaml_file.write_text(parsed or "", encoding="utf-8")
 
-    transform_yaml(yaml_file, yaml_module, combo_lookup, layout)
+    transform_yaml(
+        yaml_file, yaml_module, combo_lookup, layout, DROPPED_KEY_POSITIONS.get(board)
+    )
 
     drawn = run(
         keymap_cli
