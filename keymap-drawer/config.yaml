@@ -47,6 +47,7 @@ parse_config:
     ACC_TREMA: dead "
     '&sym_paren_pair': ()
     '&sym_bracket_pair': '[]'
+    '&sym_arrow': '->'
 
     '&mkp LCLK': LClick
     '&mkp RCLK': RClick
